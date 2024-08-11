@@ -66,11 +66,41 @@
     }
   }
 
+
+  @font-face {
+    font-family: 'Aquire';
+    src: url('/fonts/aquire/Aquire-BW0ox.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Aquire';
+    src: url('/fonts/aquire/AquireBold-8Ma60.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Aquire';
+    src: url('/fonts/aquire/AquireLight-YzE0o.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .font-aquire {
+    font-family: 'Aquire', sans-serif;
+  }
+  
+
   @layer base {
     * {
       @apply border-border;
     }
     body {
       @apply bg-background text-foreground;
+    }
+    [data-radix-popper-content-wrapper] {
+      z-index: 50 !important;
     }
   }

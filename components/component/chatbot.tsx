@@ -8,10 +8,13 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
+import { useChat as useChatContext } from '@/app/contexts/ChatContext';
 
 export function Chatbot() {
+  const { currentChatId } = useChatContext();
   const { messages, input, handleInputChange, handleSubmit, isLoading, stop } = useChat({
     api: "/api/chat",
+    id: currentChatId !== null ? currentChatId : undefined,
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -27,13 +30,13 @@ export function Chatbot() {
   }, [messages]);
 
   return (
-    <div className="flex flex-col h-screen w-full max-w-[672px] mx-auto bg-background rounded-lg shadow-lg">
+    <div className="flex flex-col h-full pt-16 w-full max-w-[672px] mx-auto bg-background rounded-lg shadow-lg">
       <div className="flex-1 overflow-auto p-6">
         {messages.length === 0 && (
           <div className="flex flex-col justify-center items-center h-full">
-            <Image src="/ai.png" alt="AI" width={80} height={80} />
-            <p className="text-lg text-muted-foreground mt-4">
-              Welcome to the Chatbot! Ask me anything.
+            <Image src="/logo.png" alt="AI" width={80} height={80} />
+            <p style={{ color: 'black', fontFamily: 'Aquire' }}>
+              Welcome to the SpanAI
             </p>
           </div>
         )}
@@ -42,7 +45,7 @@ export function Chatbot() {
             message.role === "assistant" ? (
               <div key={message.id} className="flex items-start gap-3">
                 <div className="p-2 border border-gray-700 rounded-full">
-                  <Image src="/ai.png" alt="AI" width={20} height={20} />
+                  <Image src="/logo.png" alt="AI" width={20} height={20} />
                 </div>
                 <div className="bg-muted rounded-lg p-3 max-w-[70%]">
                   <Markdown className="text-sm text-muted-foreground">
