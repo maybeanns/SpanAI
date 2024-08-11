@@ -28,7 +28,7 @@ export function SideNavbar() {
         {!isCollapsed && (
           <button 
             onClick={handleNewChat}
-            className=" text-white p-2 rounded-md flex items-center justify-center hover:bg-blue-500 transition-colors"
+            className=" text-white p-2 rounded-md flex items-center justify-center hover:text-blue-500 transition-colors"
           >
             <PlusCircle className="mr-2" size={18} />
             New Chat
